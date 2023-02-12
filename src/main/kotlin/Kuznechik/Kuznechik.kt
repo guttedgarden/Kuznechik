@@ -421,4 +421,23 @@ class Kuznechik {
         return convertArrayToBytes(arrayOfString)
     }
 
+    /**
+     * Функция конвертирует массив байтов в массив строк в шестнадцатеричной форме.
+     *
+     * @param decryptedBytes - массив дешифрованных байтов
+     * @return массив строк в шестнадцатеричной форме
+     */
+    fun bytesToString(decryptedBytes: List<Int>): List<String> {
+        var result: List<String> = emptyList(); // Инициализация пустого списка для результата
+        val returnResult: MutableList<String> = mutableListOf() // Инициализация пустого списка для конечного результата
+        result = decryptedBytes.map { Integer.toHexString(it.toInt() and 0xff) }  // Конвертация каждого байта в шестнадцатеричную строку
+        for (str in result) { // Перебор элементов списка с результатом
+            if (str.length != 2) {  // Если длина строки не равна 2, то добавить ведущий ноль
+                returnResult.add("0$str")
+            } else {
+                returnResult.add(str)
+            }
+        }
+        return returnResult
+    }
 }
