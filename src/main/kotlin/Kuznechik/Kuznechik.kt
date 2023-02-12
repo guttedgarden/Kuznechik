@@ -876,7 +876,7 @@ class Kuznechik {
      * @param decryptedBytes - массив дешифрованных байтов
      * @return массив строк в шестнадцатеричной форме
      */
-    fun bytesToString(decryptedBytes: List<Int>): List<String> {
+    fun bytesToString(decryptedBytes: ByteArray): List<String> {
         var result: List<String> = emptyList(); // Инициализация пустого списка для результата
         val returnResult: MutableList<String> = mutableListOf() // Инициализация пустого списка для конечного результата
         result =
@@ -910,5 +910,11 @@ class Kuznechik {
             }
         }
         return resultString
+    }
+
+    // Функция конвертирует массив байтов после дешифровки в строку
+    fun getString(decryptedBytes: ByteArray): String {
+        val arrayOfString = bytesToString(decryptedBytes)
+        return arrayToString(arrayOfString)
     }
 }
