@@ -254,8 +254,7 @@ class Grasshopper {
     }
 
     public fun encrypt(data: ByteArray, masterKey: String): ByteArray {
-        val masterKey: ByteArray =  lengthTo32Bytes(masterKey).toByteArray()
-        expandKeys(masterKey)
+        expandKeys(lengthTo32Bytes(masterKey).toByteArray())
         val numOfBlocks: Int
         val numberOfNull: Int
         var originText = data
@@ -300,8 +299,7 @@ class Grasshopper {
     }
 
     public fun decrypt(data: ByteArray, masterKey: String): ByteArray {
-        val masterKey: ByteArray = lengthTo32Bytes(masterKey).toByteArray()
-        expandKeys(masterKey)
+        expandKeys(lengthTo32Bytes(masterKey).toByteArray())
         val numOfBlocks = data.size / 16
         var decrText = ByteArray(data.size)
         for (i in 0 until numOfBlocks) {
