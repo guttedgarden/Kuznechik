@@ -118,7 +118,7 @@ class Kuznechik {
         }
         j = 0;
 
-        // Первые два итерационных ключа равны паре мастер ключа
+        // Первые два итерационных ключа равны паре мастер-ключа
         iterK[0] = b;
         iterK[1] = a;
         var c: ByteArray;
@@ -154,7 +154,7 @@ class Kuznechik {
         }
     }
 
-    // Операция замены байтов путем применения нелинейной заменяющей операции (S-блок)
+    // Операция замены байтов путем применения нелинейной биективного преобразования (преобразование S)
     private fun sBoxSubstitution(input: ByteArray?): ByteArray {
         val output = ByteArray(16)
         for (i in 0..15) {
@@ -167,7 +167,7 @@ class Kuznechik {
         return output
     }
 
-    // Операция замены байтов путем применения нелинейной заменяющей операции (S-блок)
+    // Обратная операция замены байтов путем применения нелинейной биективного преобразования (преобразование S)
     private fun sBoxSubstitutionReverse(input: ByteArray): ByteArray {
         val output = ByteArray(16)
         for (i in 0..15) {
@@ -237,7 +237,7 @@ class Kuznechik {
         return state
     }
     
-    // Преобразование L
+    // Линейное преобразование (преобразование L)
     private fun lTransformation(input: ByteArray?): ByteArray? {
         var state = input
         for (i in 0..15) {
@@ -246,7 +246,7 @@ class Kuznechik {
         return state
     }
 
-    // Обратное преобразование L
+    // Обратное линейное преобразование (преобразование L)
     private fun lTransformationReverse(input: ByteArray): ByteArray {
         var state = input
         for (i in 0..15) {
