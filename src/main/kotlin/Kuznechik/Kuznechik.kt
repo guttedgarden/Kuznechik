@@ -111,44 +111,21 @@ class Kuznechik {
             a[i] = key[i]
         }
         var b = ByteArray(16)
-        var j = 0
-        for (i in 16..31) {
+
+        for ((j, i) in (16..31).withIndex()) {
             b[j] = key[i]
-            j++
         }
-        j = 0;
 
         // Первые два итерационных ключа равны паре мастер-ключа
         iterK[0] = b;
         iterK[1] = a;
-        var c: ByteArray;
-        var d: ByteArray;
         var tmp: Array<ByteArray>;
         for (i in 0..3) {
-            tmp = feistelNetwork(a, b, iterC[0 + 8 * i])
-            c = tmp[0]
-            d = tmp[1]
-            tmp = feistelNetwork(c, d, iterC[1 + 8 * i])
-            a = tmp[0]
-            b = tmp[1]
-            tmp = feistelNetwork(a, b, iterC[2 + 8 * i])
-            c = tmp[0]
-            d = tmp[1]
-            tmp = feistelNetwork(c, d, iterC[3 + 8 * i])
-            a = tmp[0]
-            b = tmp[1]
-            tmp = feistelNetwork(a, b, iterC[4 + 8 * i])
-            c = tmp[0]
-            d = tmp[1]
-            tmp = feistelNetwork(c, d, iterC[5 + 8 * i])
-            a = tmp[0]
-            b = tmp[1]
-            tmp = feistelNetwork(a, b, iterC[6 + 8 * i])
-            c = tmp[0]
-            d = tmp[1]
-            tmp = feistelNetwork(c, d, iterC[7 + 8 * i])
-            a = tmp[0]
-            b = tmp[1]
+            for (j in 0..7) {
+                tmp = feistelNetwork(a, b, iterC[j + 8 * i])
+                a = tmp[1]
+                b = tmp[0]
+            }
             iterK[2 * i + 2] = a
             iterK[2 * i + 3] = b
         }
