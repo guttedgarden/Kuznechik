@@ -1,6 +1,8 @@
+package Kuznechik
+
 import java.security.MessageDigest
 
-class Grasshopper {
+class Kuznechik {
 
     // Массив для хранения итерационных констант
     private val iterC = arrayOfNulls<ByteArray>(32)
@@ -56,8 +58,8 @@ class Grasshopper {
     )
 
 
-    private fun sha256(input: ByteArray): ByteArray {
-        val md = MessageDigest.getInstance("SHA-256")
+    private fun sha512(input: ByteArray): ByteArray {
+        val md = MessageDigest.getInstance("SHA-512")
         return md.digest(input).copyOf(32);
     }
 
@@ -68,11 +70,11 @@ class Grasshopper {
      * @return Возвращает хэш-код в виде строки, содержащей 64 символа, каждый из которых представляет один байт хэша в шестнадцатеричном виде.
      */
     private fun lengthTo32Bytes(str: String): String {
-        var res: ByteArray = sha256(str.toByteArray())
+        var res: ByteArray = sha512(str.toByteArray())
 
         // Вычисление хэш-значения с использованием итерации
         repeat(10000) {
-            res = sha256(res)
+            res = sha512(res)
         }
 
         // Преобразование массива байтов хэш-значения в строку в шестнадцатеричном формате
