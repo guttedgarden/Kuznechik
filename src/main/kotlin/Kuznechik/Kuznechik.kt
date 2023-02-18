@@ -82,10 +82,10 @@ class Kuznechik {
     }
 
     // Операция XOR между двумя байтовыми массивами
-    private fun xor(input1: ByteArray?, input2: ByteArray?): ByteArray {
+    private fun xor(firstVec: ByteArray?, secondVec: ByteArray?): ByteArray {
         val output = ByteArray(16)
-        for (i in 0..15) {
-            output[i] = (input1!![i].toInt() xor input2!![i].toInt()).toByte()
+        firstVec?.forEachIndexed { index, byte ->
+            output[index] =((byte.toInt() xor secondVec?.get(index)?.toInt()!!)).toByte()
         }
         return output
     }
