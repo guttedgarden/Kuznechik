@@ -7,10 +7,10 @@ class Kuznechik {
     // Массив для хранения итерационных констант
     private val iterC = arrayOfNulls<ByteArray>(32)
 
-    // Массив для хранения ключей шифрования
+    // Массив для хранения ключей
     private val iterK = arrayOfNulls<ByteArray>(10)
 
-    // Содержит 256 десятичных знаков числа pi, каждый из которых представлен в виде байта (значение от 0 до 255).
+    // Таблица прямого нелинейного преобразования
     private val pi = intArrayToByteArray(
         intArrayOf(
             252, 238, 221, 17, 207, 110, 49, 22, 251, 196, 250, 218, 35, 197, 4, 77,
@@ -31,6 +31,8 @@ class Kuznechik {
             89, 166, 116, 210, 230, 244, 180, 192, 209, 102, 175, 194, 57, 75, 99, 182
         )
     )
+
+    // Таблица обратного нелинейного преобразования
     private val reversePi = intArrayToByteArray(
         intArrayOf(
             165, 45, 50, 143, 14, 48, 56, 192, 84, 230, 158, 57, 85, 126, 82, 145,
@@ -52,7 +54,7 @@ class Kuznechik {
         )
     )
 
-    // L-вектор для реализации R-преобразования
+    // Вектор линейного преобразования
     private val lVector = intArrayToByteArray(
         intArrayOf(148, 32, 133, 16, 194, 192, 1, 251, 1, 192, 194, 16, 133, 32, 148, 1)
     )
@@ -99,7 +101,7 @@ class Kuznechik {
         return arrayOf(xor(state, secondKey), firstKey.copyOf(firstKey.size))
     }
 
-    // Расчета раундовых ключей
+    // Расчет раундовых ключей
     private fun expandKeys(key: ByteArray) {
         val iterNum = arrayOfNulls<ByteArray>(32)
         for (i in 0..31) {
