@@ -24,3 +24,6 @@ val kuznechik: Kuznechik = Kuznechik();
 val decryptByteArray:ByteArray = kuznechik.decrypt(text.toByteArray(), key);
 val decryptString:String = String(decryptByteArray);
 ```
+
+### Результат работы ###
+![plot](./src/out.png)
