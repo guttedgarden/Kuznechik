@@ -134,29 +134,23 @@ class Kuznechik {
     }
 
     // Операция замены байтов путем применения нелинейной биективного преобразования (преобразование S)
-    private fun sBoxSubstitution(input: ByteArray?): ByteArray {
-        val output = ByteArray(16)
-        for (i in 0..15) {
-            var t = input!![i].toInt()
-            if (t < 0) {
-                t += 256
-            }
-            output[i] = pi[t]
+    private fun sBoxSubstitution(input: ByteArray): ByteArray {
+        val output = ByteArray(16);
+        for (i in 0 until 16) {
+            val t = input[i].toInt() and 0xff;
+            output[i] = pi[t];
         }
-        return output
+        return output;
     }
 
     // Обратная операция замены байтов путем применения нелинейной биективного преобразования (преобразование S)
     private fun sBoxSubstitutionReverse(input: ByteArray): ByteArray {
-        val output = ByteArray(16)
-        for (i in 0..15) {
-            var t = input[i].toInt()
-            if (t < 0) {
-                t += 256
-            }
-            output[i] = reversePi[t]
+        val output = ByteArray(16);
+        for (i in 0 until 16) {
+            val t = input[i].toInt() and 0xff;
+            output[i] = reversePi[t];
         }
-        return output
+        return output;
     }
 
     /**
