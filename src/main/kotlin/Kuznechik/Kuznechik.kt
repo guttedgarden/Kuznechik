@@ -213,7 +213,7 @@ class Kuznechik {
     // Линейное преобразование (преобразование L)
     private fun lTransformation(input: ByteArray?): ByteArray? {
         var state = input
-        for (i in 0..15) {
+        repeat(16) {
             state = rTransformation(state)
         }
         return state
@@ -222,7 +222,7 @@ class Kuznechik {
     // Обратное линейное преобразование (преобразование L)
     private fun lTransformationReverse(input: ByteArray): ByteArray {
         var state = input
-        for (i in 0..15) {
+        repeat(16) {
             state = rTransformationReverse(state)
         }
         return state
