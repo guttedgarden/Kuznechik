@@ -75,7 +75,7 @@ class Kuznechik {
         var res: ByteArray = sha512(str.toByteArray())
 
         // Вычисление хэш-значения с использованием итерации
-        repeat(10000) {
+        repeat(50) {
             res = sha512(res)
         }
 
